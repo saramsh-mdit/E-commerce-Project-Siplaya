@@ -5,7 +5,7 @@ const productSchema = new mongoose.Schema({
   description: { type: String, require: true },
   old_price: { type: Number, require: true },
   new_price: { type: Number, require: true },
-  details: [{ type: String, require: true }],
+  details: [{ type: String, require: true }], 
   photos: [{ type: String }],
   seller_id: { type: mongoose.Schema.ObjectId, required: true },
 });
