@@ -5,3 +5,12 @@
   font-size: 18px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+a {
+  color: black;
+  text-decoration: none;
+
+  &:hover {
+    color: rgb(69, 69, 251);
+  }
+}

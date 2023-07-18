@@ -1,0 +1,27 @@
+.footer {
+    display: flex;
+    gap: 2rem;
+    // justify-content: space-between;
+    padding: 1rem 2rem;
+    background: #232323;
+    color: rgb(220, 220, 220);
+
+    a {
+        color: white;
+    }
+
+
+}
+
+.links {
+    flex-grow: 2;
+    width: 100%;
+    display: grid;
+    gap: 2rem;
+
+}
+
+.pageLinks {
+    display: grid;
+    gap: 0.5rem;
+}

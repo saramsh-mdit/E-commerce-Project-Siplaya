@@ -1,7 +1,12 @@
-const MainContainer = ({ children }) => {
+import Footer from "../components/Footer";
+import NavBar from "../components/Navbar";
+
+const MainContainer = (props) => {
   return (
     <>
-      <main>{children}</main>;
+      <NavBar />
+      <main style={{ minHeight: "100vh" }}>{props?.children}</main>
+      <Footer />
     </>
   );
 };

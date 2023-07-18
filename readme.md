@@ -7,3 +7,9 @@ Backend `npm install express cookie-parser jsonwebtoken cors multer mongoose dot
 Frontend: Install vite and choose react, javascript
 
 Packages: `npm install axios react-router-dom react-icons sass`
+
+
+To run project locally
+
+git clone 'url'
+
