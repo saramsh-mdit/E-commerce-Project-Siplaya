@@ -1,31 +1,20 @@
 const { Router } = require("express");
 const ProductModel = require("../models/product");
 const uploadProduct = require("../middlewares/photoUpload");
+const { addProduct, updateProduct } = require("./product.service");
 
 const ProductController = Router();
 
-ProductController.get("/", async (req, res) => {
-  try {
-    const data = await ProductModel.find();
-    res.send(data);
-  } catch (err) {
-    console.log(err);
-    res.status(500).send(err);
-  }
-});
-
 ProductController.post(
   "/",
-  uploadProduct.array("images", 5),
+  [uploadProduct.array("images", 5)],
   async (req, res) => {
     try {
       const uploadData = req.files;
       const { name, description, old_price, new_price, details } = req.body;
-      console.log(req.body);
-      //   save to database
       const photos = uploadData?.map((item) => item.filename);
-      const seller_id = res?.locals?.seller_id ?? `64acaa76716da28f21927499`;
-      const newProduct = new ProductModel({
+      const seller_id = res?.locals?.user._id ?? `64acaa76716da28f21927499`;
+      const productData = {
         name,
         description,
         old_price,
@@ -33,9 +22,36 @@ ProductController.post(
         details,
         photos,
         seller_id,
-      });
-      const data = await newProduct.save();
-      res.status(201).send(data);
+      };
+      const results = await addProduct(productData);
+      res.status(201).send(results);
+    } catch (err) {
+      console.log(err);
+      res.status(500).send(err);
+    }
+  }
+);
+
+ProductController.put(
+  "/",
+  [uploadProduct.array("images", 5)],
+  async (req, res) => {
+    try {
+      const uploadData = req.files;
+      const { name, description, old_price, new_price, details } = req.body;
+      const photos = uploadData?.map((item) => item.filename);
+      const seller_id = res?.locals?.user._id ?? `64acaa76716da28f21927499`;
+      const productData = {
+        name,
+        description,
+        old_price,
+        new_price,
+        details,
+        photos,
+        seller_id,
+      };
+      const results = await updateProduct(productData);
+      res.status(201).send(results);
     } catch (err) {
       console.log(err);
       res.status(500).send(err);
@@ -46,7 +62,8 @@ ProductController.post(
 ProductController.delete("/:product_id", async (req, res) => {
   try {
     const _id = req.params.product_id;
-    const data = await ProductModel.deleteOne({ _id });
+    const seller_id = res.locals?.user?._id;
+    const data = await ProductModel.deleteOne({ _id, seller_id });
     res.status(204).send(data);
   } catch (err) {
     console.log(err);

@@ -3,6 +3,7 @@ const SellerModel = require("../models/seller");
 
 const SellerController = Router();
 
+
 SellerController.get("/all", async (req, res) => {
   try {
     const data = await SellerModel.find(
