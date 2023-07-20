@@ -14,7 +14,6 @@ const NavItem = ({ title, link }) => (
   <NavLink
     to={link}
     className={({ isActive }) => {
-      console.log(isActive);
       return isActive ? style.navItemActive : style.navItem;
     }}
   >

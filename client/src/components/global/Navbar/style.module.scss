@@ -1,0 +1,35 @@
+.navBar {
+    display: flex;
+    justify-content: space-around;
+    gap: 1rem;
+    background: #d4d4d4;
+    padding: 0.5rem 2rem;
+}
+
+.navItems {
+    display: flex;
+    gap: 2rem;
+}
+
+.navItem {
+    color: rgb(69, 69, 69);
+    transition-duration: 0.5s;
+    font-weight: 600;
+
+    &:hover {
+        transition-duration: 0.5s;
+        color: rgb(63, 63, 237);
+    }
+}
+
+.navItemActive {
+    transition-duration: 0.5s;
+    font-weight: 600;
+    color: rgb(63, 63, 237);
+
+    &:hover {
+        transition-duration: 0.5s;
+        color: rgb(63, 63, 237);
+
+    }
+}

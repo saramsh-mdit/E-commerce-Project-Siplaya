@@ -1,0 +1,11 @@
+.buttonBase {
+    border: 0rem;
+    padding: 0.25rem 2rem;
+    background: #d7d7d7;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover {
+        filter: brightness(85%);
+    }
+}

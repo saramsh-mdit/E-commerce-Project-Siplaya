@@ -1,0 +1,26 @@
+.flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+
+.productCard {
+    box-sizing: border-box;
+    width: 100%;
+    @apply flex;
+    cursor: pointer;
+    border: 1px solid rgb(171, 171, 171);
+    transition-duration: 0.5s;
+
+    &:hover {
+        transition-duration: 0.5s;
+        color: blue;
+        box-shadow: rgb(176, 176, 176) 3px 3px 6px
+    }
+}
+
+.productCardInfo {
+    @apply flex;
+    padding: 1rem;
+
+}

@@ -1,5 +1,5 @@
-import Footer from "../components/Footer";
-import NavBar from "../components/Navbar";
+import Footer from "../components/global/Footer";
+import NavBar from "../components/global/Navbar";
 
 const MainContainer = (props) => {
   return (
