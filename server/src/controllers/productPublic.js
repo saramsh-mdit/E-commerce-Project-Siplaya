@@ -15,10 +15,10 @@ ProductPublicController.get("/", async (req, res) => {
   }
 });
 
-ProductPublicController.get("/:seller_id", async (req, res) => {
+ProductPublicController.get("/:product_id", async (req, res) => {
   try {
-    const seller_id = req.params.seller_id;
-    const data = await ProductModel.find({ seller_id });
+    const _id = req.params.product_id;
+    const data = await ProductModel.findOne({ _id });
     res.send(data);
   } catch (err) {
     console.log(err);

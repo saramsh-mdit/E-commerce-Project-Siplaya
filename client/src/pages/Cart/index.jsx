@@ -5,6 +5,9 @@ import { CartContext } from "../../store/cart/cartContext";
 
 const CartPage = () => {
   const { value, dispatch, inc, dec } = React.useContext(CartContext);
+  React.useEffect(() => {
+    console.log(value);
+  }, [value]);
   return (
     <MainContainer>
       <Title size="lg">Cart</Title>
@@ -42,21 +45,21 @@ const CartPage = () => {
           {value
             ? value?.map((item, index) => {
                 return (
-                  <tr key={item.product_id}>
+                  <tr key={item?.product_id}>
                     <td>{index + 1}</td>
-                    <td>{item.name}</td>
-                    <td>{item.price}</td>
+                    <td>{item?.name}</td>
+                    <td>{item?.price}</td>
                     <td>
                       <div className="options">
-                        <button onClick={() => dec(item.product_id)}>-</button>
-                        <button onClick={() => inc(item.product_id)}>+</button>
+                        <button onClick={() => dec(item?.product_id)}>-</button>
+                        <button onClick={() => inc(item?.product_id)}>+</button>
 
                         <button
                           onClick={() =>
                             dispatch({
                               type: "remove",
                               payload: {
-                                product_id: item.product_id,
+                                product_id: item?.product_id,
                               },
                             })
                           }
@@ -65,8 +68,8 @@ const CartPage = () => {
                         </button>
                       </div>
                     </td>
-                    <td>{item.quantity}</td>
-                    <td>Rs:{item.quantity * item.price}</td>
+                    <td>{item?.quantity}</td>
+                    <td>Rs:{item?.quantity * item?.price}</td>
                   </tr>
                 );
               })

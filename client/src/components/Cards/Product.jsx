@@ -3,6 +3,7 @@ import Title from "../global/Title";
 import Text from "../global/Text";
 
 import style from "./style.module.scss";
+import { Link } from "react-router-dom";
 
 const defaultImage = "public/images/defaultImage.png";
 const defaultTitle = `Product ${parseInt((Math.random() * 100) % 100)}`;
@@ -17,7 +18,10 @@ const ProductCard = ({
   imageURL,
 }) => {
   return (
-    <div className={style.productCard}>
+    <Link
+      to={`/${product_id}`}
+      className={style.productCard}
+    >
       <div className="img">
         <img
           src={
@@ -37,7 +41,7 @@ const ProductCard = ({
 
         <Text size="md">Price: Rs {newPrice ?? randomPrice}/-</Text>
       </div>
-    </div>
+    </Link>
   );
 };
 

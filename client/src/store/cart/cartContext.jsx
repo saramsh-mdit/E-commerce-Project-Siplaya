@@ -16,8 +16,8 @@ export const CartProvider = ({ children }) => {
   const [value, dispatch] = React.useReducer(cartReducer, defaultCart);
 
   React.useEffect(() => {
-    console.log("State Updated", value?.cartItems);
-  }, [value]);
+    console.log(value);
+  });
 
   const inc = (product_id) => {
     dispatch({

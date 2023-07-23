@@ -5,6 +5,17 @@ const { addProduct, updateProduct } = require("./product.service");
 
 const ProductController = Router();
 
+ProductController.get("/seller", async (req, res) => {
+  try {
+    const seller_id = req.locals.user.seller_id;
+    const data = await ProductModel.find({ seller_id });
+    res.send(data);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+});
+
 ProductController.post(
   "/",
   [uploadProduct.array("images", 5)],
