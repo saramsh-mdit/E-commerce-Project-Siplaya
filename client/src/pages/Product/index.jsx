@@ -9,6 +9,8 @@ import URLS from "../../constant/urls";
 import Button from "../../components/global/Button";
 import { CartContext } from "../../store/cart/cartContext";
 
+import style from "./style.module.scss";
+
 const ProductPage = () => {
   const { product_id } = useParams();
   const { dispatch } = useContext(CartContext);
@@ -38,33 +40,47 @@ const ProductPage = () => {
       {isLoading ? (
         <p>Loading</p>
       ) : (
-        <section>
-          <div>
+        <section className={style.productDetails}>
+          <div className={style.product_image}>
             {data?.photos?.map((item) => {
               return (
-                <img
+                <div
                   key={item}
-                  src={URLS.imagePath + item}
-                  alt={data?.name ?? ""}
-                />
+                  className="img"
+                >
+                  <img
+                    src={URLS.imagePath + item}
+                    alt={data?.name ?? ""}
+                  />
+                </div>
               );
             })}
           </div>
-          <Title>{data?.name ?? ""}</Title>
-          {data?.details?.map((item) => {
-            <Text key={item}>{item}</Text>;
-          })}
-
-          <Text>{data?.description}</Text>
-
-          <del>
-            <Text>Rs:{data?.old_price}</Text>
-          </del>
-          <Text size="lg">
-            Rs:{data?.new_price} <b>{discount} %</b>
-          </Text>
-
-          <Button onClick={onClickHandler}>Add To Cart</Button>
+          <div className={style.product_info}>
+            <div className={style.info_main}>
+              <Title size="lg">{data?.name ?? ""}</Title>
+              <del>
+                <Text>Rs:{data?.old_price}</Text>
+              </del>
+              <Title>
+                Rs:{data?.new_price}{" "}
+                <span className={style.discount}>{discount} %</span>
+              </Title>
+            </div>
+            <div className={style.productDetailsSection}>
+              <Text size="lg">Product Details</Text>
+              {data?.details?.map((item) => {
+                return <Text key={item}> - {item}</Text>;
+              })}
+            </div>
+            <div className={style.controls}>
+              <Button onClick={onClickHandler}>Add To Cart</Button>
+            </div>
+            <div>
+              <Text size="lg">Product Description</Text>
+              <Text>{data?.description}</Text>
+            </div>
+          </div>
         </section>
       )}
     </MainContainer>

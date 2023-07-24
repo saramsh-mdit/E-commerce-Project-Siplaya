@@ -1,0 +1,43 @@
+.productDetails {
+    display: flex;
+    gap: 2rem;
+}
+
+// .imageDimentions {}
+
+.product_image {
+    width: 50%;
+}
+
+.product_info {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    align-items: start;
+    padding: 2rem;
+}
+
+.info_main {
+    background: #d6d6d6;
+    display: grid;
+    width: 100%;
+    padding: 1rem;
+    gap: 0.2rem;
+}
+
+.discount {
+    font-weight: 600;
+    color: rgb(10, 150, 10);
+}
+
+.productDetailsSection {
+    display: grid;
+    gap: 0.5rem;
+    padding: 1rem 0rem;
+}
+
+.controls {
+    display: flex;
+    gap: 2rem;
+    margin: 1rem 0rem;
+}
