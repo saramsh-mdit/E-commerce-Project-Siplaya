@@ -5,9 +5,10 @@ const { addProduct, updateProduct } = require("./product.service");
 
 const ProductController = Router();
 
-ProductController.get("/seller", async (req, res) => {
+ProductController.get("/seller/all", async (req, res) => {
   try {
-    const seller_id = req.locals.user.seller_id;
+    const seller_id = res?.locals?.user._id;
+    console.log("SELLER ID", seller_id);
     const data = await ProductModel.find({ seller_id });
     res.send(data);
   } catch (err) {
@@ -22,6 +23,7 @@ ProductController.post(
   async (req, res) => {
     try {
       const uploadData = req.files;
+      console.log(req.files);
       const { name, description, old_price, new_price, details } = req.body;
       const photos = uploadData?.map((item) => item.filename);
       const seller_id = res?.locals?.user._id ?? `64acaa76716da28f21927499`;

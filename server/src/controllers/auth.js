@@ -80,13 +80,13 @@ AuthController.post("/login/seller", async (req, res) => {
 AuthController.post("/login/user", async (req, res) => {
   try {
     const { email, password } = req.body;
-    const Seller = await UserModel.findOne({ email });
-    if (!Seller) {
+    const user = await UserModel.findOne({ email });
+    if (!user) {
       throw { message: "Invalid email or password. User Does not exist." };
     } else {
-      const isValid = verifyHash(Seller.password, password);
+      const isValid = verifyHash(user.password, password);
       if (isValid) {
-        const token = createToken({ _id: Seller._id, isSeller: false });
+        const token = createToken({ _id: user._id, isSeller: false });
         res.send({ token, isSeller: false });
       } else {
         throw { message: "Invalid email or password" };
@@ -112,17 +112,17 @@ AuthController.get("/me", AuthMiddleware, async (req, res) => {
         address: true,
         shop_name: true,
       });
-      res.send(data);
+      res.send({ ...data._doc, isSeller: true });
+    } else {
+      const data = await UserModel.findById(_id, {
+        name: true,
+        email: true,
+        contact: true,
+      });
+      res.send({ ...data._doc, isSeller: false });
     }
-    const data = await UserModel.findById(_id, {
-      name: true,
-      email: true,
-      contact: true,
-    });
-    res.send(data);
   } catch (err) {
-    console.log(err);
-    res.status(401).send(err);
+    res.status(400).send(err);
   }
 });
 

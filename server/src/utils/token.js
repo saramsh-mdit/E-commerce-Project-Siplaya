@@ -13,9 +13,7 @@ const createToken = (obj) => {
 
 const verifyToken = (token) => {
   try {
-    console.log(token);
     const tokenData = jwt.verify(token, env.SECRET);
-    console.log(tokenData);
     if (!tokenData) throw { message: "Invalid Token" };
     else return tokenData;
   } catch (err) {
